@@ -1,9 +1,11 @@
 import 'package:MyChat/FunctionWidgets/Widgets.dart';
+import 'package:MyChat/views/chatRoomScreen.dart';
 import 'package:flutter/material.dart';
 import '../services/firebase.dart';
 
 class SingUpPage extends StatefulWidget {
-  //this is from another class
+  final Function toogle;
+  SingUpPage(this.toogle);
   @override
   _SingUpPageState createState() => _SingUpPageState();
 }
@@ -21,7 +23,8 @@ class _SingUpPageState extends State<SingUpPage> {
       auth.singUpWithFirebasess(
           emailTextEditingController.text, passwordTextEditingController.text);
       //to navigate to new page
-
+      Navigator.pushReplacement(context,
+          new MaterialPageRoute(builder: (context) => ChatRoomScreen()));
     }
   }
 
@@ -124,7 +127,7 @@ class _SingUpPageState extends State<SingUpPage> {
                           width: MediaQuery.of(context).size.width * 0.85,
                           decoration: buildBoxDecoration(Colors.blue),
                           child: Text(
-                            'Sign in',
+                            'Sign Up',
                             style: buildTextStyle(18),
                           ),
                         ),
@@ -149,16 +152,19 @@ class _SingUpPageState extends State<SingUpPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Don\'t have a account?',
+                            'Already have a account?',
                             style: buildTextStyle(16),
                           ),
-                          Text(
-                            'Register now',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline),
+                          GestureDetector(
+                            onTap: widget.toogle, //or (){widget.toogle();}
+                            child: Text(
+                              'SingIn',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline),
+                            ),
                           )
                         ],
                       )

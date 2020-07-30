@@ -1,11 +1,19 @@
 import 'package:MyChat/FunctionWidgets/Widgets.dart';
 import 'package:flutter/material.dart';
 
-class SinginPage extends StatelessWidget {
+class SinginPage extends StatefulWidget {
+  final Function toogle;
+  SinginPage(this.toogle);
+  @override
+  _SinginPageState createState() => _SinginPageState();
+}
+
+class _SinginPageState extends State<SinginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbarsss(context, 'SingIn'),
+      backgroundColor: Colors.black45,
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -63,13 +71,19 @@ class SinginPage extends StatelessWidget {
                 'Don\'t have a account?',
                 style: buildTextStyle(16),
               ),
-              Text(
-                'Register now',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline),
+              //Here we use gesture detector to toogle between Singin and Signup
+              GestureDetector(
+                onTap: () {
+                  widget.toogle();
+                },
+                child: Text(
+                  'Register now',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline),
+                ),
               )
             ],
           )

@@ -1,5 +1,5 @@
 //import 'package:MyChat/views/singin.dart';
-import 'package:MyChat/views/singup.dart';
+import 'package:MyChat/helper/toggleSingInUp.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,6 +32,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return SingUpPage();
+    return AuthAndToogleSingInUp();
   }
 }
