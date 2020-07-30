@@ -3,7 +3,9 @@ import 'package:MyChat/model/user.dart';
 
 //this is a function with Objects hai
 User userFromFireBase(FirebaseUser userss) {
-  return userss != null ? User(userId: userss.uid) : null;
+  return userss != null
+      ? User(userId: userss.uid)
+      : null; //this uid means userId, if it was id only then write id
 }
 
 class AuthMethods {
@@ -13,8 +15,8 @@ class AuthMethods {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser userfirebase = result.user;
-      return userFromFireBase(userfirebase);
+      FirebaseUser fireUser = result.user;
+      return userFromFireBase(fireUser);
     } catch (e) {
       print(e.toString());
     }
@@ -24,8 +26,8 @@ class AuthMethods {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser userfirebase = result.user;
-      return userFromFireBase(userfirebase);
+      FirebaseUser fireUser = result.user;
+      return userFromFireBase(fireUser);
     } catch (e) {
       print(e.toString());
     }
@@ -48,3 +50,21 @@ class AuthMethods {
     }
   }
 }
+
+// import 'package:MyChat/model/user.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+
+// FirebaseAuth auth = FirebaseAuth.instance;
+
+// User userfunction(FirebaseUser user) {
+//   return user != null ? User(userId: user.uid) : null;
+// }
+
+// class AuthUser {
+//   Future signinwithemaiandpass(String email, String password) async {
+//     AuthResult result =
+//         await auth.signInWithEmailAndPassword(email: email, password: password);
+//     FirebaseUser fuser = result.user;
+//     return userfunction(fuser);
+//   }
+// }

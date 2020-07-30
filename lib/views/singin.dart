@@ -1,10 +1,11 @@
+import 'package:MyChat/FunctionWidgets/Widgets.dart';
 import 'package:flutter/material.dart';
 
 class SinginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: appbarsss(context, 'SingIn'),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
