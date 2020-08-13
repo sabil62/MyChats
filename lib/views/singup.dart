@@ -1,4 +1,5 @@
 import 'package:MyChat/FunctionWidgets/Widgets.dart';
+import 'package:MyChat/services/database.dart';
 import 'package:MyChat/views/chatRoomScreen.dart';
 import 'package:flutter/material.dart';
 import '../services/firebase.dart';
@@ -12,6 +13,8 @@ class SingUpPage extends StatefulWidget {
 
 class _SingUpPageState extends State<SingUpPage> {
   AuthMethods auth = AuthMethods();
+  //database
+  DatabaseMethods databaseMethods = new DatabaseMethods();
 
   bool istrue = false;
 
@@ -20,6 +23,14 @@ class _SingUpPageState extends State<SingUpPage> {
       setState(() {
         istrue = true;
       });
+      //for database updating
+      Map<String, String> userAndEmail = {
+        "username": usernameTextEditingController.text,
+        "email": emailTextEditingController.text
+      };
+      databaseMethods.updateUserName(userAndEmail);
+
+      //for authentication
       auth.singUpWithFirebasess(
           emailTextEditingController.text, passwordTextEditingController.text);
       //to navigate to new page
