@@ -28,11 +28,12 @@ class _SingUpPageState extends State<SingUpPage> {
         "username": usernameTextEditingController.text,
         "email": emailTextEditingController.text
       };
-      databaseMethods.updateUserName(userAndEmail);
 
       //for authentication
       auth.singUpWithFirebasess(
           emailTextEditingController.text, passwordTextEditingController.text);
+      //add to database
+      databaseMethods.updateUserName(userAndEmail);
       //to navigate to new page
       Navigator.pushReplacement(context,
           new MaterialPageRoute(builder: (context) => ChatRoomScreen()));
