@@ -5,7 +5,14 @@ class DatabaseMethods {
     await Firestore.instance.collection("users").add(userAndemail);
   }
 
-  getUserName(String username) {
+  getUserName(String email) {
+    return Firestore.instance
+        .collection("users")
+        .where("email", isEqualTo: email)
+        .getDocuments();
+  }
+
+  getUserNamefromName(String username) {
     return Firestore.instance
         .collection("users")
         .where("username", isEqualTo: username)

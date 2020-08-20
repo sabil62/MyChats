@@ -18,7 +18,9 @@ class _SearchPageState extends State<SearchPage> {
   QuerySnapshot searchSnapshot;
 
   initiateSearch() async {
-    databaseMethods.getUserName(searchTextEditingController.text).then((val) {
+    databaseMethods
+        .getUserNamefromName(searchTextEditingController.text)
+        .then((val) {
       setState(() {
         searchSnapshot = val;
       });

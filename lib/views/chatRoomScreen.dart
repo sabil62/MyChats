@@ -14,15 +14,19 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
       backgroundColor: Colors.red,
       appBar: appbarsss(context, 'ChatRoom Screen'),
       body: null,
-      floatingActionButton: IconButton(
-        icon: Icon(Icons.search),
-        onPressed: () {
-          Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (context) => SearchPage(),
-              ));
-        },
+      floatingActionButton: Container(
+        height: 40,
+        color: Colors.green.withOpacity(0.25),
+        child: IconButton(
+          icon: Icon(Icons.search, size: 24),
+          onPressed: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => SearchPage(),
+                ));
+          },
+        ),
       ),
     );
   }

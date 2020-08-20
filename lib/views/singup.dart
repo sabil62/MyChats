@@ -37,12 +37,12 @@ class _SingUpPageState extends State<SingUpPage> {
       sharedPreferencess
           .setSharedPreferenceEmail(emailTextEditingController.text);
 
-      //for authentication
+      //for AUTHENTICATION
       auth.singUpWithFirebasess(
           emailTextEditingController.text, passwordTextEditingController.text);
-      //add to database
+      //add to DATABASE
       databaseMethods.updateUserName(userAndEmail);
-      //using sharedpreferences as sessions
+      //using SHAREDPREFERNCES as sessions
       sharedPreferencess.setSharedPreferenceLogin(true);
 
       //to navigate to new page
@@ -114,8 +114,8 @@ class _SingUpPageState extends State<SingUpPage> {
                             ),
                             TextFormField(
                               validator: (value) {
-                                return value == null
-                                    ? 'Please enter valid password'
+                                return value == null || value.length < 6
+                                    ? 'Please enter valid password and longer than  6'
                                     : null;
                               },
                               obscureText: true, //for password
@@ -143,7 +143,7 @@ class _SingUpPageState extends State<SingUpPage> {
                         height: 20,
                       ),
                       GestureDetector(
-                        onTap: goForSingUp, //or (){goForSignUp}
+                        onTap: goForSingUp, //or (){goForSignUp()}
                         child: Container(
                           height: 70,
                           alignment: Alignment.center,
