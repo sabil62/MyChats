@@ -1,4 +1,5 @@
 import 'package:MyChat/FunctionWidgets/Widgets.dart';
+import 'package:MyChat/helper/sharedpreferences.dart';
 import 'package:MyChat/services/database.dart';
 import 'package:MyChat/views/chatRoomScreen.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,10 @@ class SingUpPage extends StatefulWidget {
 }
 
 class _SingUpPageState extends State<SingUpPage> {
+  //classes
   AuthMethods auth = AuthMethods();
-  //database
   DatabaseMethods databaseMethods = new DatabaseMethods();
+  SharedPreferencess sharedPreferencess = new SharedPreferencess();
 
   bool istrue = false;
 
@@ -29,11 +31,20 @@ class _SingUpPageState extends State<SingUpPage> {
         "email": emailTextEditingController.text
       };
 
+      //this is using sharedpreferences as session
+      sharedPreferencess
+          .setSharedPreferenceUsername(usernameTextEditingController.text);
+      sharedPreferencess
+          .setSharedPreferenceEmail(emailTextEditingController.text);
+
       //for authentication
       auth.singUpWithFirebasess(
           emailTextEditingController.text, passwordTextEditingController.text);
       //add to database
       databaseMethods.updateUserName(userAndEmail);
+      //using sharedpreferences as sessions
+      sharedPreferencess.setSharedPreferenceLogin(true);
+
       //to navigate to new page
       Navigator.pushReplacement(context,
           new MaterialPageRoute(builder: (context) => ChatRoomScreen()));
